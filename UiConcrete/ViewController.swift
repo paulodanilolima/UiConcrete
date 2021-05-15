@@ -21,8 +21,7 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view.
             
-        self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
-        self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: productID)
+        self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: productID)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
@@ -44,7 +43,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productID, for: indexPath) as! CollectionViewCell
-        cell.backgroundColor = .green
+//        cell.backgroundColor = .green
         cell.label?.text = self.nome[indexPath.item]
         cell.img?.image = self.img[indexPath.item]
         
@@ -55,5 +54,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     }
     
     
-    
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 267, height: 270)
+    }
 }
